@@ -4,11 +4,15 @@ import MapView, { Marker } from 'react-native-maps';
 
 const DEFAULT_DELTA = 0.045;
 
-const renderMarkers = (coordinates) => {
-    return coordinates.map(coord => {
+const renderMarkers = (marker) => {
+    return marker.map((marker, index) => {
         return <Marker
-            coordinate={coord}
-            pinColor='red' />
+            key={index}
+            coordinate={marker.coords}
+            pinColor='red'
+            title={marker.title}
+            description={marker.description}
+        />
     })
 }
 

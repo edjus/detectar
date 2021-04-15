@@ -1,8 +1,9 @@
-import React from 'react';
-import { Alert, StyleSheet, View , Dimensions, Text} from 'react-native';
-import  MapView from 'react-native-maps';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as Location from 'expo-location';
+import React from 'react';
+import { Alert, Dimensions, StyleSheet, View } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import MapView from 'react-native-maps';
 
 const DEFAULT_LOCATION = {
   coords: {
@@ -12,7 +13,7 @@ const DEFAULT_LOCATION = {
 };
 const DEFAULT_DELTA = 0.045;
 
-export default class  Map extends React.Component {
+export default class Map extends React.Component {
   state = {
     location:DEFAULT_LOCATION
   }
@@ -55,8 +56,28 @@ export default class  Map extends React.Component {
 
   render(){
     return (
-       <KeyboardAwareScrollView style={{marginTop:20}}>
+      <KeyboardAwareScrollView style={{marginTop:20}}>
         <View style={StyleSheet.containerAll}>
+
+          <View style={styles.filterMenu}>
+            <View style={styles.filterContainer}>
+              <DropDownPicker
+                items={[
+                  {label: 'Comuna 1', value: '1' },
+                  {label: 'Comuna 2', value: '2' },
+                  {label: 'Comuna 3', value: '3' },
+                ]} />
+            </View>
+            <View style={styles.filterContainer}>
+              <DropDownPicker
+                items={[
+                  {label: '1 KM', value: '1' },
+                  {label: '5 KM', value: '5' },
+                  {label: '10 KM', value: '10' },
+                ]} />
+            </View>
+          </View>
+
           <MapView 
             style={styles.mapStyle}  
             ref={map => this._map = map}
@@ -65,8 +86,7 @@ export default class  Map extends React.Component {
               longitude: this.state.location.coords.longitude,
               latitudeDelta: DEFAULT_DELTA,
               longitudeDelta: DEFAULT_DELTA
-            }}
-          > 
+            }}>
           </MapView>
         </View>
       </KeyboardAwareScrollView>
@@ -75,9 +95,18 @@ export default class  Map extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  filterMenu: {
+    flexDirection: 'row',
+    position: 'absolute'
+  },
+  filterContainer: {
+    padding: 10,
+    flex: 1
+  },
   mapStyle: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+    zIndex: -1
   },
   containerAll:{
     ...StyleSheet.absoluteFillObject

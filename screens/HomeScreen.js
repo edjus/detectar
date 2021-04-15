@@ -21,8 +21,12 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.getCurrentLocation();
-    
-    LocationService.get().then((markers) => {
+
+    this.getMarkers()
+  }
+
+  getMarkers(filters = {}) {
+    LocationService.get(filters).then((markers) => {
       this.setState({ markers })
     })
   }
@@ -59,12 +63,17 @@ export default class HomeScreen extends React.Component {
     this.setState({ location })
   }
 
+  onFilterChange(filters) {
+    this.getMarkers(filters)
+  }
+
   render(){
     return (
       <KeyboardAwareScrollView style={{marginTop:20}}>
         <View style={StyleSheet.containerAll}>
 
-          <Filters />
+          <Filters
+            onFiltersChange={newFilters => this.onFilterChange(newFilters)} />
 
           <Map
             currentLocation={this.state.location}

@@ -1,25 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const Filters = () => {
+const Filters = ({ onFiltersChange }) => {
+    const [filters, setFilters] = useState({
+        comuna: '1',
+        distance: '5'
+    })
+
     return (
         <View style={styles.filterMenu}>
             <View style={styles.filterContainer}>
                 <DropDownPicker
+                    defaultValue={filters.comuna}
                     items={[
                         {label: 'Comuna 1', value: '1' },
                         {label: 'Comuna 2', value: '2' },
                         {label: 'Comuna 3', value: '3' },
-                    ]} />
+                    ]}
+                    onChangeItem={item => {
+                        setFilters({ ...filters, comuna: item.value })
+                        onFiltersChange(filters)
+                    }}
+                />
             </View>
             <View style={styles.filterContainer}>
                 <DropDownPicker
+                    defaultValue={filters.distance}
                     items={[
                         {label: '1 KM', value: '1' },
                         {label: '5 KM', value: '5' },
                         {label: '10 KM', value: '10' },
-                    ]} />
+                    ]}
+                    onChangeItem={item => {
+                        setFilters({ ...filters, distance: item.value })
+                        onFiltersChange(filters)
+                    }}
+                />
             </View>
         </View>
     )

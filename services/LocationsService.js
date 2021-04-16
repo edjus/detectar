@@ -13,7 +13,7 @@ const marker = (title, description, lat, long) => {
     }
 }
 
-const get = async () => {
+const get = async (filters) => {
     return Promise.resolve([
         marker('Casa Bonita', 'Dirección: Casa Bonita 1234', -34.604179, -58.446780),
         marker('Centro Médico', 'Dirección: Centro Médico 321', -34.617792, -58.425814),

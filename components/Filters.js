@@ -4,8 +4,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 const Filters = ({ onFiltersChange }) => {
     const [filters, setFilters] = useState({
-        comuna: '1',
-        distance: '5'
+        comuna: '0',
+        distance: '0'
     })
 
     return (
@@ -14,6 +14,7 @@ const Filters = ({ onFiltersChange }) => {
                 <DropDownPicker
                     defaultValue={filters.comuna}
                     items={[
+                        {label: 'Comuna', value: '0' },
                         {label: 'Comuna 1', value: '1' },
                         {label: 'Comuna 2', value: '2' },
                         {label: 'Comuna 3', value: '3' },
@@ -28,6 +29,7 @@ const Filters = ({ onFiltersChange }) => {
                 <DropDownPicker
                     defaultValue={filters.distance}
                     items={[
+                        {label: 'Distancia', value: '0' },
                         {label: '1 KM', value: '1' },
                         {label: '5 KM', value: '5' },
                         {label: '10 KM', value: '10' },

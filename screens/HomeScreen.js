@@ -15,7 +15,7 @@ const DEFAULT_LOCATION = {
 
 export default class HomeScreen extends React.Component {
   state = {
-    location: DEFAULT_LOCATION,
+    location: null,
     markers: []
   }
 
@@ -75,10 +75,10 @@ export default class HomeScreen extends React.Component {
           <Filters
             onFiltersChange={newFilters => this.onFilterChange(newFilters)} />
 
-          <Map
+          {this.state.location && (<Map
             currentLocation={this.state.location}
             markersCoordinates={this.state.markers} 
-          />
+          />)}
 
         </View>
       </KeyboardAwareScrollView>

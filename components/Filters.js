@@ -14,7 +14,7 @@ const Filters = ({ onFiltersChange }) => {
                 <DropDownPicker
                     defaultValue={filters.comuna}
                     items={[
-                        {label: 'Comuna',   value: '' },
+                        {label: 'Comuna',   value: '0' },
                         {label: 'Comuna 1', value: 'Comuna 1' },
                         {label: 'Comuna 2', value: 'Comuna 2' },
                         {label: 'Comuna 3', value: 'Comuna 3' },

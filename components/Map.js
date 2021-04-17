@@ -45,7 +45,6 @@ const Map = ({ currentLocation, markersCoordinates, distance }) => {
                 <MapViewDirections
                     origin={currentLocation.coords}
                     destination={selectedLocation.coords}
-                    // apikey={process.env.GOOGLE_API_KEY}
                     apikey={GOOGLE_API_KEY}
                     strokeColor='hotpink'
                     strokeWidth={3}

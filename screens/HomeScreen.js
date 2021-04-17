@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Filters from '../components/Filters';
 import Map from '../components/Map';
 import * as LocationService from '../services/LocationsService'
+import Texts from '../utils/Texts';
 import { calculateDistance } from '../utils/Utils';
 
 const DEFAULT_LOCATION = {
@@ -54,8 +55,8 @@ export default class HomeScreen extends React.Component {
 
     if (!enabled){
       Alert.alert(
-        'Enable your location service.',
-        'This app requires location services.',
+        Texts.enableLocationServicesTitle(),
+        Texts.enableLocationServicesMessage(),
         [{ text: 'OK' }],
         { cancelable: false }
       );
@@ -66,8 +67,8 @@ export default class HomeScreen extends React.Component {
 
     if (status !== 'granted') {
       Alert.alert(
-        'Permission not granted',
-        'Allow the app to use location service.',
+        Texts.permissionNotGrantedTitle(),
+        Texts.permissionNotGrantedMessage(),
         [{ text: 'OK' }],
         { cancelable: false }
       );

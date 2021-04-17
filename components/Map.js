@@ -8,7 +8,7 @@ const DEFAULT_DELTA = 0.045;
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 
-const renderMarkers = (marker, state, setState) => {
+const renderMarkers = (marker, setSelecetedLocation) => {
     return marker.map((marker, index) => {
         return <Marker
             key={index}
@@ -18,19 +18,14 @@ const renderMarkers = (marker, state, setState) => {
             description={marker.description}
             onPress={e =>{
                 e.stopPropagation();
-                setState({
-                    ...state,
-                    selectedLocation: marker
-                });
+                setSelecetedLocation(marker);
             }}
         />
     })
 }
 
 const Map = ({ currentLocation, markersCoordinates }) => {
-    const [state, setState] = useState({
-        selectedLocation: null
-    })
+    const [selectedLocation, setSelectedLocation] = useState(null);
 
     let mapView;
 
@@ -46,10 +41,10 @@ const Map = ({ currentLocation, markersCoordinates }) => {
             ref={m => mapView = m}
             moveOnMarkerPress={false}>
 
-            {state.selectedLocation && (
+            {selectedLocation && (
                 <MapViewDirections
                     origin={currentLocation.coords}
-                    destination={state.selectedLocation.coords}
+                    destination={selectedLocation.coords}
                     // apikey={process.env.GOOGLE_API_KEY}
                     apikey={GOOGLE_API_KEY}
                     strokeColor='hotpink'
@@ -73,7 +68,7 @@ const Map = ({ currentLocation, markersCoordinates }) => {
                 title='You'
             />
 
-            {renderMarkers(markersCoordinates, state, setState)}
+            {renderMarkers(markersCoordinates, setSelectedLocation)}
         </MapView>
     )
 }

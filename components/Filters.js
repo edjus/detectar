@@ -6,7 +6,7 @@ const Filters = ({ onFiltersChange }) => {
     const [filters, setFilters] = useState({
         comuna: '0',
         distance: '0'
-    })
+    });
 
     return (
         <View style={styles.filterMenu}>
@@ -20,8 +20,9 @@ const Filters = ({ onFiltersChange }) => {
                         {label: 'Comuna 3', value: '3' },
                     ]}
                     onChangeItem={item => {
-                        setFilters({ ...filters, comuna: item.value })
-                        onFiltersChange(filters)
+                        const newFilters = { ...filters, comuna: item.value };
+                        setFilters(newFilters);
+                        onFiltersChange(newFilters);
                     }}
                 />
             </View>
@@ -35,8 +36,9 @@ const Filters = ({ onFiltersChange }) => {
                         {label: '10 KM', value: '10' },
                     ]}
                     onChangeItem={item => {
-                        setFilters({ ...filters, distance: item.value })
-                        onFiltersChange(filters)
+                        const newFilters = { ...filters, distance: item.value };
+                        setFilters(newFilters);
+                        onFiltersChange(newFilters);
                     }}
                 />
             </View>
@@ -44,7 +46,7 @@ const Filters = ({ onFiltersChange }) => {
     )
 }
 
-export default Filters
+export default Filters;
 
 const styles = StyleSheet.create({
     filterMenu: {

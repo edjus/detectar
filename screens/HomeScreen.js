@@ -5,6 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Filters from '../components/Filters';
 import Map from '../components/Map';
 import * as LocationService from '../services/LocationsService'
+import { calculateDistance } from '../utils/Utils';
 
 const DEFAULT_LOCATION = {
   coords: {
@@ -27,8 +28,22 @@ export default class HomeScreen extends React.Component {
 
   getMarkers(filters = {}) {
     LocationService.get(filters).then((markers) => {
-      this.setState({ markers })
-    })
+      const filteredMarkers = this.filterByDistance(markers, parseInt(filters.distance)); 
+      this.setState({ markers: filteredMarkers })
+    });
+  }
+
+  filterByDistance(markers, maxdistance) {
+    if (!maxdistance)
+      return markers;
+    
+    return markers.filter(marker => {
+      const {latitude, longitude} = marker.coords;
+      const {coords} = this.state.location
+      const distance = calculateDistance(latitude, longitude, coords.latitude, coords.longitude);
+      console.log("distance", distance);
+      return distance <= maxdistance;
+    });
   }
 
   async getCurrentLocation() {

@@ -8,8 +8,8 @@ const DEFAULT_DELTA = 0.045;
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 
-const renderMarkers = (marker, setSelecetedLocation) => {
-    return marker.map((marker, index) => {
+const renderMarkers = (markers, setSelecetedLocation) => {
+    return markers.map((marker, index) => {
         return <Marker
             key={index}
             coordinate={marker.coords}

@@ -14,10 +14,22 @@ const Filters = ({ onFiltersChange }) => {
                 <DropDownPicker
                     defaultValue={filters.comuna}
                     items={[
-                        {label: 'Comuna', value: '0' },
-                        {label: 'Comuna 1', value: '1' },
-                        {label: 'Comuna 2', value: '2' },
-                        {label: 'Comuna 3', value: '3' },
+                        {label: 'Comuna',   value: '' },
+                        {label: 'Comuna 1', value: 'Comuna 1' },
+                        {label: 'Comuna 2', value: 'Comuna 2' },
+                        {label: 'Comuna 3', value: 'Comuna 3' },
+                        {label: 'Comuna 4', value: 'Comuna 4' },
+                        {label: 'Comuna 5', value: 'Comuna 5' },
+                        {label: 'Comuna 6', value: 'Comuna 6' },
+                        {label: 'Comuna 7', value: 'Comuna 7' },
+                        {label: 'Comuna 8', value: 'Comuna 8' },
+                        {label: 'Comuna 9', value: 'Comuna 9' },
+                        {label: 'Comuna 10', value: 'Comuna 10' },
+                        {label: 'Comuna 11', value: 'Comuna 11' },
+                        {label: 'Comuna 12', value: 'Comuna 12' },
+                        {label: 'Comuna 13', value: 'Comuna 13' },
+                        {label: 'Comuna 14', value: 'Comuna 14' },
+                        {label: 'Comuna 15', value: 'Comuna 15' }
                     ]}
                     onChangeItem={item => {
                         const newFilters = { ...filters, comuna: item.value };

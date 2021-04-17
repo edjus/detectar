@@ -11,11 +11,11 @@ const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 const renderMarkers = (markers, setSelecetedLocation) => {
     return markers.map((marker, index) => {
         return <Marker
-            key={index}
+            key={marker.id}
             coordinate={marker.coords}
             pinColor='red'
             title={marker.title}
-            description={marker.description}
+            description={marker.address}
             onPress={e =>{
                 e.stopPropagation();
                 setSelecetedLocation(marker);

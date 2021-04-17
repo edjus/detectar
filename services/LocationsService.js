@@ -1,24 +1,24 @@
-const coords = (lat, long) => {
-    return {
-        latitude: lat,
-        longitude: long
-    }
-}
-
-const marker = (title, description, lat, long) => {
-    return {
-        title,
-        description,
-        coords: coords(lat, long)
-    }
-}
+import { BACKEND_URL } from '@env'
+import axios from 'axios'
 
 const get = async (filters) => {
-    return Promise.resolve([
-        marker('Casa Bonita', 'Dirección: Casa Bonita 1234', -34.604179, -58.446780),
-        marker('Centro Médico', 'Dirección: Centro Médico 321', -34.617792, -58.425814),
-        marker('Un Título', 'Dirección: Una Dirección', -34.597869, -58.418893)
-    ])
+    const response = await axios.get(`${BACKEND_URL}/operatives`, {
+        params: {
+            comuna: filters.comuna
+        }
+    })
+
+    return response.data.map(o => { 
+        return {
+            id: o.id,
+            title: o.lugar,
+            address: o.direccion,
+            coords: {
+                latitude: parseFloat(o.y),
+                longitude: parseFloat(o.x)
+            }
+        }
+    })
 }
 
 export {

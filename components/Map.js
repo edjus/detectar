@@ -15,7 +15,7 @@ const renderMarkers = (markers, setSelecetedLocation) => {
             coordinate={marker.coords}
             pinColor='red'
             title={marker.title}
-            description={marker.address}
+            description={`Dirección: ${marker.address}, ${marker.comuna}`}
             onPress={e =>{
                 e.stopPropagation();
                 setSelecetedLocation(marker);

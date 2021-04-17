@@ -13,6 +13,7 @@ const get = async (filters) => {
             id: o.id,
             title: o.lugar,
             address: o.direccion,
+            comuna: o.comuna,
             coords: {
                 latitude: parseFloat(o.y),
                 longitude: parseFloat(o.x)

@@ -1,7 +1,7 @@
 import { GOOGLE_API_KEY } from '@env';
 import React, { useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, Circle } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 
 const DEFAULT_DELTA = 0.045;
@@ -24,7 +24,7 @@ const renderMarkers = (markers, setSelecetedLocation) => {
     })
 }
 
-const Map = ({ currentLocation, markersCoordinates }) => {
+const Map = ({ currentLocation, markersCoordinates, distance }) => {
     const [selectedLocation, setSelectedLocation] = useState(null);
 
     let mapView;
@@ -61,6 +61,14 @@ const Map = ({ currentLocation, markersCoordinates }) => {
                     }}
                 />
             )}
+
+            {distance && (<Circle 
+                center={currentLocation.coords}  
+                radius={distance}  
+                fillColor={'rgba(200,100,2,0.2)'} 
+                strokeColor={'red'} 
+                strokeWidth={3}>
+            </Circle>)}
 
             <Marker
                 coordinate={currentLocation.coords}

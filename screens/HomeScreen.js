@@ -11,13 +11,14 @@ const DEFAULT_LOCATION = {
   coords: {
     latitude:-34.61745,
     longitude:-58.36795
-  }
+  },
 };
 
 export default class HomeScreen extends React.Component {
   state = {
     location: null,
-    markers: []
+    markers: [],
+    distance: null,
   }
 
   componentDidMount() {
@@ -34,14 +35,16 @@ export default class HomeScreen extends React.Component {
   }
 
   filterByDistance(markers, maxdistance) {
-    if (!maxdistance)
+    if (!maxdistance){
+      this.setState({...this.state, distance: null});
       return markers;
-    
+    }
+
+    this.setState({...this.state, distance: maxdistance*1000});
     return markers.filter(marker => {
       const {latitude, longitude} = marker.coords;
       const {coords} = this.state.location
       const distance = calculateDistance(latitude, longitude, coords.latitude, coords.longitude);
-      console.log("distance", distance);
       return distance <= maxdistance;
     });
   }
@@ -92,7 +95,8 @@ export default class HomeScreen extends React.Component {
 
           {this.state.location && (<Map
             currentLocation={this.state.location}
-            markersCoordinates={this.state.markers} 
+            markersCoordinates={this.state.markers}
+            distance={this.state.distance}
           />)}
 
         </View>

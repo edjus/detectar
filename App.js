@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import InternetConnectionAlert from "react-native-internet-connection-alert";
 import Texts from './utils/Texts';
+import Toast from 'react-native-toast-message';
+
 
 export default function App() {
   return (
@@ -13,6 +15,7 @@ export default function App() {
       <View style={styles.container}>
         <HomeScreen></HomeScreen>
       </View>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </InternetConnectionAlert>
   );
 }

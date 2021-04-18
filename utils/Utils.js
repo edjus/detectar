@@ -1,3 +1,5 @@
+import Toast from 'react-native-toast-message';
+
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
   const R = 6371e3;
   const φ1 = lat1 * Math.PI/180;
@@ -13,6 +15,18 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
   return R * c / 1000; //distance in km
 }
 
+const showToastMessage = (type, title, description, position) => {
+  Toast.show({
+    text1: title,
+    text2: description,
+    position: position,
+    type: type,
+    visibilityTime: 4000,
+    autoHide: true,
+  });
+}
+
 export {
-  calculateDistance
+  calculateDistance,
+  showToastMessage
 }

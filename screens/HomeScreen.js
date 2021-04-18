@@ -6,7 +6,8 @@ import Filters from '../components/Filters';
 import Map from '../components/Map';
 import * as LocationService from '../services/LocationsService'
 import Texts from '../utils/Texts';
-import { calculateDistance } from '../utils/Utils';
+import { calculateDistance, showToastMessage } from '../utils/Utils';
+
 
 const DEFAULT_LOCATION = {
   coords: {
@@ -34,6 +35,8 @@ export default class HomeScreen extends React.Component {
     LocationService.get(filters).then((markers) => {
       const filteredMarkers = this.filterByDistance(markers, parseInt(filters.distance)); 
       this.setState({ markers: filteredMarkers })
+    }).catch((e) => {
+      showToastMessage('error', 'Error conexión', 'Hubo un problema con la conección.', 'bottom');
     });
   }
 

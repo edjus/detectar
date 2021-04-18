@@ -15,6 +15,8 @@ const DEFAULT_LOCATION = {
   },
 };
 
+const UPDATE_INTERVAL = 1000
+
 export default class HomeScreen extends React.Component {
   state = {
     location: null,
@@ -78,6 +80,13 @@ export default class HomeScreen extends React.Component {
     let location = await Location.getCurrentPositionAsync({
       accuracy: Location.Accuracy.High
     });
+
+    Location.watchPositionAsync({
+      accuracy: Location.Accuracy.High,
+      timeInterval: UPDATE_INTERVAL
+    }, (newLocation) => {
+      this.setState({ location: newLocation })
+    })
 
     this.setState({ location })
   }

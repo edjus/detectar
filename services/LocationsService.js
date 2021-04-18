@@ -2,7 +2,9 @@ import { BACKEND_URL } from '@env'
 import axios from 'axios'
 
 const get = async (filters) => {
-    const response = await axios.get(`${BACKEND_URL}/operatives`, {
+    const url = `${BACKEND_URL}/operatives`
+
+    const response = await axios.get(url, {
         params: {
             comuna: filters.comuna
         }

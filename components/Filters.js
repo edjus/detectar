@@ -32,7 +32,8 @@ const Filters = ({ onFiltersChange }) => {
                         {label: 'Comuna 15', value: 'Comuna 15' }
                     ]}
                     onChangeItem={item => {
-                        const newFilters = { ...filters, comuna: item.value };
+                        const value = item.value === "0" ? undefined : item.value;
+                        const newFilters = { ...filters, comuna: value };
                         setFilters(newFilters);
                         onFiltersChange(newFilters);
                     }}
